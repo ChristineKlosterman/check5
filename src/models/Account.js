@@ -7,6 +7,7 @@ export class Account {
     this.bio = data.bio
     this.picture = data.picture
     this.coverImg = data.coverImg
+    this.resume = data.resume
     // TODO add additional properties if needed
   }
 }

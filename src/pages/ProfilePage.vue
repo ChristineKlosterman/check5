@@ -13,10 +13,11 @@
         <img :src="profile.picture" alt="" height="100" />
         <h4>{{ profile.name }}</h4>
         <p>{{ profile.bio }}</p>
-        <p>{{ profile.linkedin }} | {{ profile.github }}</p>
+        <a>{{ profile.linkedin }} | {{ profile.github }}</a>
         <p>Graduated? {{ profile.graduated }}</p>
         <p>{{ profile.class }}</p>
         <img :src="profile.coverImg" />
+        <a :src="profile.resume"></a>
     </div>
 
     <div class="row">
@@ -24,6 +25,22 @@
             <PostsCard :post="p" />
         </div>
     </div>
+    <div class="row mb-5 pb-5">
+        <div class="col-6 text-end">
+            <button @click="changePage(previousPage)" class=" selectable btn btn-outline-dark text-dark w-50"
+                :disabled="!previousPage">
+                Previous
+            </button>
+        </div>
+        <div class="col-6">
+            <button @click="changePage(nextPage)" class="selectable btn btn-outline-dark text-dark w-50"
+                :disabled="!nextPage">
+                Next
+            </button>
+        </div>
+    </div>
+
+
 
 
 </template>
@@ -82,6 +99,15 @@ export default {
             posts: computed(() => AppState.profilePosts),
             verts: computed(() => AppState.verts),
             cover: computed(() => `url(${AppState.activeProfile?.coverImg || 'https://cdn.pixabay.com/photo/2017/07/16/17/33/background-2509983_1280.jpg'})`),
+            nextPage: computed(() => AppState.nextPage),
+            previousPage: computed(() => AppState.previousPage),
+            async changePage(url) {
+                try {
+                    await postsService.changePage(url);
+                } catch (error) {
+                    Pop.error(error)
+                }
+            }
         }
     }
 

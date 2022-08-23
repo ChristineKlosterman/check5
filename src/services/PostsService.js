@@ -14,9 +14,15 @@ class PostsService {
     }
 
     async getLikes(likeId) {
-        const res = api.get('api/posts/:id/like')
+        const res = api.get(`api/posts/like`)
         AppState.likes = res.data.likes.map(l => new likeId(l))
     }
+
+    // async likePost(likeId){
+    //     let url = api.post(`api/posts/${likeId}/like`)
+    //     await api.post(url)
+    //     AppState.posts.likes = AppState.posts.likes.filter
+    // }
 
     async createPost(postData) {
         const res = await api.post('/api/posts', postData)
@@ -39,20 +45,20 @@ class PostsService {
     }
 
     async getPostsBySearch(searchTerm) {
-        const res = await api.get('/search/posts', {
+        const res = await api.get('/api/posts', {
             params: {
                 query: searchTerm
             }
         })
-        AppState.posts = res.data.posts.results.map(p => new Post(p))
+        AppState.posts = res.data.posts.map(p => new Post(p))
     }
 
     async changePage(url) {
         const res = await api.get(url)
         logger.log(res.data)
         AppState.posts = res.data.posts.map(p => new Post(p))
-        AppState.nextPage = res.data.older.posts
-        AppState.previousPage = res.data.newer.posts
+        AppState.nextPage = res.data.older
+        AppState.previousPage = res.data.newer
     }
 }
 

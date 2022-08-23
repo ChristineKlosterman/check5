@@ -4,7 +4,7 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
     <p>{{ account.bio }}</p>
-    <p>{{ account.coverImg }}</p>
+    <img :src="account.coverImg" />
     <p>{{ account.gitHub }}|{{ account.linkedIn }}</p>
     <AccountForm />
   </div>

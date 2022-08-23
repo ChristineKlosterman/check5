@@ -23,6 +23,18 @@
                 <input type="text" class="form-control" v-model="editable.linkedin" required name="linkedIn">
             </div>
             <div>
+                <label for="graduated">Graduated:</label>
+                <input type="text" class="form-control" v-model="editable.graduated" required name="graduated">
+            </div>
+            <div>
+                <label for="class">Class:</label>
+                <input type="text" class="form-control" v-model="editable.class" required name="class" />
+            </div>
+            <div>
+                <label for="resume">Resume:</label>
+                <input type="url" class="form-control" v-model="editable.resume" required name="resume" />
+            </div>
+            <div>
                 <label for="bio">Bio:</label>
                 <textarea type="text" class="form-control" v-model="editable.bio" required name="bio" rows="8"
                     style="resize:none"></textarea>
